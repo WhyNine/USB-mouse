@@ -1,4 +1,6 @@
-
+Follow the instructions below.
+- Lines starting with a lowercase letter are commands to be run at the CLI
+- Lines starting with an uppercase letter are instructions on what to do
 
 Add to config.txt:
 dtoverlay=dwc2
@@ -10,7 +12,7 @@ echo "libcomposite" | sudo tee -a /etc/modules
 sudo touch /usr/bin/isticktoit_usb
 sudo chmod +x /usr/bin/isticktoit_usb
 
-Edit above file to contain:
+Edit above file to contain (these lines are also in make_mouse.sh for reference):
 #!/bin/bash
 cd /sys/kernel/config/usb_gadget/
 mkdir -p isticktoit
@@ -45,15 +47,17 @@ ls /sys/class/udc > UDC
 Add to near end of /etc/rc.local:
 /usr/bin/isticktoit_usb # libcomposite configuration
 
-Copy hid_gadget_test.c
+Copy hid_gadget_test.c to /home/pi
 gcc hid_gadget_test.c
 mv a.out hid_gadget_test
 
 Edit cmdline.txt:
-- add "dwc_otg.lpm_enable=0" to start
-- add "modules-load=dwc2,g_hid" to end
+- add "dwc_otg.lpm_enable=0" to start of line
+- add "modules-load=dwc2,g_hid" to end of line
 
-Copy over send_left_buttons.sh
+sudo reboot
+
+Copy over send_left_buttons.sh to /home/pi
 chmod +x send_left_buttons.sh
 
 Usage: '/send_left_buttons.sh <number of clicks>

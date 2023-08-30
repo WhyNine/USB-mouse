@@ -1,4 +1,5 @@
 /* hid_gadget_test */
+/* Downloaded from https://www.kernel.org/doc/Documentation/usb/gadget_hid.rst */
 
     #include <pthread.h>
     #include <string.h>
